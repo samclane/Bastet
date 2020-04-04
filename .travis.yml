@@ -1,5 +1,9 @@
 sudo: required
 language: python            # this works for Linux but is an error on macOS or Windows
+addons:
+  apt:
+    packages:
+      - xvfb
 matrix:
   fast_finish: true
   include:
