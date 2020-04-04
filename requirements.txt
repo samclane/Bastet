@@ -1,0 +1,7 @@
+PyQt5
+PyQt5-sip
+black
+pytest
+pre-commit
+tox
+babel
