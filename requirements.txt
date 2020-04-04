@@ -2,6 +2,7 @@ PyQt5
 PyQt5-sip
 black
 pytest
+pytest-qt
 pre-commit
 tox
 babel
