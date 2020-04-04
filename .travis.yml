@@ -1,3 +1,4 @@
+sudo: required
 language: python            # this works for Linux but is an error on macOS or Windows
 matrix:
   fast_finish: true
@@ -18,12 +19,21 @@ matrix:
         - PATH=/c/Python37:/c/Python37/Scripts:$PATH
   allow_failures:
     - os: windows           # Windows 10.0.17134 N/A Build 17134
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y xvfb herbstluftwm
 install:
+  - export DISPLAY=:99.0
+  - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1200x24 -ac +extension GLX +render -noreset
+  - sleep 3
   - pip3 install --upgrade pip || pip3 install --upgrade --user pip  # --user is required for Windows
   - pip3 install -r requirements.txt || pip3 install -r --user requirements.txt
   - pip3 install pytest pytest-cov codecov || pip3 install --user pytest pytest-cov codecov  # install coverage monitor
 # 'python' points to Python 2.7 on macOS but points to Python 3.7 on Linux and Windows
 # 'python3' is a 'command not found' error on Windows but 'py' works on Windows only
+before_script:
+  - "herbstluftwm &"
+  - sleep 1
 script:
   - pytest --cov=./
 

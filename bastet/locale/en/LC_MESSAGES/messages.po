@@ -49,4 +49,3 @@ msgstr ""
 #: bastet/__main__.py:81
 msgid "Application was minimized to Tray"
 msgstr ""
-
