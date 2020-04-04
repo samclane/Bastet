@@ -25,7 +25,7 @@ matrix:
     - os: windows           # Windows 10.0.17134 N/A Build 17134
 before_install:
   - sudo apt-get update
-  - sudo apt-get install -y xvfb herbstluftwm python3-pytest-xvfb
+  - sudo apt-get install -y xvfb herbstluftwm
 install:
   - "export DISPLAY=:99.0"
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1200x24 -ac +extension GLX +render -noreset"
